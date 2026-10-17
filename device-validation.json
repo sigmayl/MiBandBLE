@@ -1,0 +1,217 @@
+{
+  "date": "2026-10-17",
+  "revision": "r1",
+  "status": "USER_REPORTED_FAILURE",
+  "report_verbatim": "扫描BLE event queue corrupted",
+  "artifact": {
+    "size": 1495663,
+    "sha256": "57728a0520449715606529a5ea137b95aec08ff1db080bc6d059230befb2d73f"
+  },
+  "diagnosis": "Allocator binding 0x0c121dc9 is malloc, not zalloc; shared state was not initialized. Dirty-heap firmware regression reproduces unsigned head-tail=4294967284.",
+  "fix": "Use real zalloc 0x0c121d75 and execute actual malloc/zalloc wrappers over dirty modeled mm_malloc in tests.",
+  "fixed_revision": "r2-zalloc",
+  "fixed_device_status": "USER_REPORTED_CONNECTION_PASS_READ_WRITE_FAILURE",
+  "fixed_artifact": {
+    "path": "dist/o66cn-3.1.28-native-ble-r2.bin",
+    "size": 1496838,
+    "sha256": "e3325f280b6c32d845623db4da69b803ea97410775b7a183efc4ade246b06f52"
+  },
+  "regression": {
+    "original_payload": "FAIL: unsigned head-tail 4294967284",
+    "fixed_payload": "PASS",
+    "firmware_tests": 9,
+    "lua_session_assertions": 31,
+    "package_check": "PASS"
+  },
+  "r2_followup": {
+    "date": "2026-10-17",
+    "report_verbatim": "连接没问题了，确实能连上，但是读取和写入零值均报smash.lua:后面的看不清",
+    "display_report_verbatim": "读不到日志，后面的太长了，被覆盖了，没渲染出来",
+    "connection": "USER_REPORTED_PASS",
+    "read_write": "USER_REPORTED_FAILURE",
+    "diagnosis": "Session treated attribute type 2 (include) as characteristic; actual firmware bttool switch uses 3 (characteristic). Thus valid read/write/notify handles were ignored. Lua source location prefixes and crowded labels obscured errors.",
+    "evidence": "Execute original firmware 0x0c4d573e through 0x0c4d5752 for all five type values; labels PRI, SND, INC, CHR, DES. Corrected Lua fixtures fail on R2 and pass on R3."
+  },
+  "r3": {
+    "revision": "r3-gatt-types-display",
+    "device_status": "USER_REPORTED_READ_WRITE_PASS_NOTIFICATION_BURST_FAILURE",
+    "artifact": {
+      "path": "dist/o66cn-3.1.28-native-ble-r3.bin",
+      "size": 1510678,
+      "sha256": "72e9edf8d09efa5138ee008d99b4408efa5b37a763fb9c181c5714ba8409cb8c"
+    },
+    "native_payload_unchanged_from_r2": true,
+    "fix": "Bind only type 3 characteristics; separate capability labels; strip Lua source prefix and paginate all message text on device with tap navigation. Preserve current page during timer updates.",
+    "regression": {
+      "firmware_tests": 10,
+      "lua_session_assertions": 41,
+      "display_ui_assertions": 86,
+      "package_check": "PASS"
+    },
+    "pending_hardware": [
+      "pagination and real font layout",
+      "BLE lifecycle stability"
+    ],
+    "report_verbatim": "第一次成功连上了，也能完成读写。但是mock端一拉ADC条，就断开了，提示BLE事件丢失59",
+    "connection": "USER_REPORTED_PASS",
+    "read_write": "USER_REPORTED_PASS",
+    "notification_burst": "USER_REPORTED_FAILURE"
+  },
+  "r4": {
+    "revision": "r4-notification-stream",
+    "device_status": "NOT_PROBED",
+    "artifact": {
+      "path": "dist/o66cn-3.1.28-native-ble-r4.bin",
+      "size": 1522228,
+      "sha256": "e1d75eb483c9b33e01f1aaa1c554aa0531f47eedffcd63e3b46370a082f81df6"
+    },
+    "native_payload": {
+      "size": 2656,
+      "sha256": "4c25f640ce742faad2a5702bce9ab0075e9e5084188c0749a9d7923a7e2646c0"
+    },
+    "requires_reboot_from_r3": true,
+    "diagnosis": "ADC SeekBar onProgressChanged emits one notification per change. R3 mixed notifications and control callbacks in a 16-slot FIFO; 75 callbacks reproduce exactly 59 dropped events, and the following write completion is also lost. The Lua session then proactively disconnects.",
+    "fix": "Independent 16-slot notification recent-history buffer and lock; sample newest six per poll with sequence-checked snapshots. Skipped notifications are visible and nonfatal; control callbacks keep their FIFO and fatal-overflow handling. Display latest ADC value. Heartbeats during draining; attach-relative control error baseline.",
+    "notification_delivery": "Sampled recent history, not lossless. Skips count superseded samples, producer lock contention and oversized notifications.",
+    "regression": {
+      "r3_75_notification_burst": "queued=16 dropped=59; following write completion dropped",
+      "r4_75_notification_burst": "control dropped=0, skipped=69, delivered=6, final ADC=74, write completion delivered",
+      "r4_repeated_bursts": "300 notifications interleaved with reads/writes; no control drops; latest payload retained",
+      "firmware_tests": 12,
+      "lua_session_assertions": 44,
+      "display_ui_assertions": 87,
+      "transport_concurrency_assertions": 16,
+      "package_check": "PASS"
+    },
+    "pending_hardware": [
+      "continuous ADC drag without disconnect",
+      "final ADC value after slider release",
+      "read/write after notification burst",
+      "R4 display rendering",
+      "BLE lifecycle stability"
+    ],
+    "followup_verbatim": "ok，接下来优化持久连接，而不是熄屏就断",
+    "followup_note": "User acknowledged the R4 result and requested screen-off persistence; no detailed measurements of the R4 hardware retest were supplied."
+  },
+  "r5": {
+    "revision": "r5-screen-off-persistence",
+    "device_status": "NOT_PROBED",
+    "artifact": {
+      "path": "dist/o66cn-3.1.28-native-ble-r5.bin",
+      "size": 1531368,
+      "sha256": "e0cbd76c7f40399d1f408c7cf4f34012ab4f3dfaff50c749c934a0494d0094d4"
+    },
+    "native_payload": {
+      "size": 2800,
+      "sha256": "a8cb94149ad10571b3cbf946d86d9a9b6a15c43172322d1f15cb29a0f559121b"
+    },
+    "requires_reboot_from_r4": true,
+    "request_verbatim": "ok，接下来优化持久连接，而不是熄屏就断",
+    "behavior": "Screen off or temporary root hiding sets ui_suspended and pauses UI polling. Native worker retains connection/subscription without Lua heartbeat, stops scanning, and uses one-second idle background waits. Wake refreshes heartbeat and consumes pending completions/latest notifications on the same session. Lua deadlines exclude suspended time. Explicit close, root destruction, foreground heartbeat loss and connection timeout still clean up.",
+    "state_version": "0x10003",
+    "regression": {
+      "firmware_tests": 14,
+      "lua_session_assertions": 51,
+      "display_ui_assertions": 97,
+      "transport_concurrency_assertions": 20,
+      "package_check": "PASS",
+      "background_duration": "3600 modeled one-second worker waits, no Lua heartbeat; connection retained, notification received, post-wake write completed",
+      "lifecycle": "OFF/AOD/ON and root hide/show order, pending reads across suspension, remote disconnect, explicit close and root destruction, restored foreground lease and connection timeout"
+    },
+    "pending_hardware": [
+      "screen-off connection persistence",
+      "wake synchronization and subsequent read/write",
+      "temporary page hiding and actual root destruction behavior",
+      "real device suspend scheduling and power consumption"
+    ]
+  },
+  "r6": {
+    "revision": "r6-product-controller",
+    "device_status": "NOT_PROBED",
+    "artifact": {
+      "path": "dist/o66cn-3.1.28-native-ble-r6.bin",
+      "size": 1587608,
+      "sha256": "b52219246cd0cbc0e74d3e5ed3cee367350428657fe866f33b51a037e6f6dbb5"
+    },
+    "native_payload": {
+      "size": 3500,
+      "sha256": "fbb44dbabf90b5d15c9ae3738defa866f9fcb37312808218debf29d4f1020882"
+    },
+    "requires_reboot_from_r5": true,
+    "request_verbatim": [
+      "先优化一下交互，不要把所有操作交互都挤在1屏上，而是分成多级交互",
+      "不不不，这次是产品级的了，不再是面向开发",
+      "加入完整遥控操作（推荐）"
+    ],
+    "state_version": "0x10004",
+    "behavior": "Product pages for home, supported device list, connection, two-channel remote, individual level adjustment, device management, help and recovery. Initial stop gates controls. Levels and priority stop run as native batches, including in background; closing attempts zero before disconnect. Queued controls are handed off before UI suspension; failure to submit requests shutdown. Completion requires matching batch sequence and all write callbacks, not ACK alone.",
+    "regression": {
+      "firmware_tests": 17,
+      "lua_session_assertions": 69,
+      "display_ui_assertions": 292,
+      "transport_concurrency_assertions": 20,
+      "package_check": "PASS",
+      "protocol_crosscheck": "QCPW/QCSW/QCVW real Lua -> NSH -> compiled PIC -> firmware write wrapper ciphertext decoded by independent mock Python implementation; channel mapping, suction scaling, checksum and all three zero frames verified.",
+      "native_controls": "Background batch completion, latest batch replacement, priority stop, stop before disconnect, callback error and timeout.",
+      "immediate_sleep": "Pending levels submitted before suspend; stop waiting behind previous ACK submitted before suspend; stuck ACK triggers close instead of retaining an unsent stop."
+    },
+    "pending_hardware": [
+      "R6 font rendering, touch targets and multi-page navigation",
+      "independent channel adjustment and rapid taps",
+      "stop during adjustment and zero before disconnect",
+      "immediate screen off after a control tap",
+      "notification burst and sustained connection through screen off",
+      "real device suspend scheduling and power consumption"
+    ]
+  },
+  "r7": {
+    "revision": "r7-capsule-ui",
+    "device_status": "NOT_PROBED",
+    "request_verbatim": "UI还需优化：小米手环的屏幕只有1.73寸，且为药丸形状（上下半圆，中间长方形 212 × 520），减少文字描述，优化异形边界",
+    "artifact": {
+      "path": "dist/o66cn-3.1.28-native-ble-r7.bin",
+      "size": 1586753,
+      "sha256": "e2431008d9a8f2f60c90f1ebcd01fb7f3b6384ac283bce7256cb4434fcbd58ee"
+    },
+    "native_payload_unchanged_from_r6": true,
+    "requires_reboot_from_r6": false,
+    "behavior": "212x520 capsule layout with radius 106 end caps, 8px arc inset, centred navigation, narrow footer actions, 44px minimum target height, 72px strength value, fixed middle stop position, two devices per page and shorter copy.",
+    "regression": {
+      "display_ui_assertions": 740,
+      "package_check": "PASS",
+      "lua_syntax": "PASS",
+      "geometry": "All visible bounding-box corners in sampled pages fit capsule inset by 8px; touch targets >=44px high; no overlaps.",
+      "preview": "Actual UI snapshots with capsule mask and substitute CJK font; not a hardware screenshot.",
+      "native_payload_and_r6_package": "SHA-256 unchanged; no native firmware retest needed for UI-only change."
+    },
+    "pending_hardware": [
+      "MiSans rendering and actual touch experience on 212x520 display",
+      "All R6 hardware validation items remain pending"
+    ]
+  },
+  "r8": {
+    "revision": "r8-minimal-sliders",
+    "device_status": "NOT_PROBED",
+    "request_verbatim": "将界面做到最精简：第一屏只显示大圆形居中的设备连接按钮和底部的帮助。第三屏改为左右排布双通道，竖向滑动条。第四页面砍掉。",
+    "artifact": {
+      "path": "dist/o66cn-3.1.28-native-ble-r8.bin",
+      "size": 1594903,
+      "sha256": "7ca439922faeaac3d27f1d6112bc32c405b07de8ae3c858a33e916506d75da03"
+    },
+    "native_payload_unchanged_from_r6": true,
+    "requires_reboot_from_r6_r7": false,
+    "behavior": "Home contains only a centred 180px circular connect/remote button and footer help. Control page has two independent vertical 0-100 sliders, stop and device entry. Separate channel page removed. Continuous dragging retains capture during refresh; stop, navigation, lost press and screen suspension cancel old gestures.",
+    "regression": {
+      "display_ui_assertions": 780,
+      "package_check": "PASS",
+      "lua_syntax": "PASS",
+      "input_binding": "Original firmware indev namespace/get_act and get_point x,y Lua returns inspected; see lua-input-abi.md.",
+      "native_payload_and_r7_package": "SHA-256 unchanged."
+    },
+    "pending_hardware": [
+      "Actual touch capture and dragging on the band",
+      "MiSans font rendering",
+      "R6 BLE hardware validation remains pending"
+    ]
+  }
+}

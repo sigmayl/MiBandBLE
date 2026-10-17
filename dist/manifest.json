@@ -1,0 +1,31 @@
+{
+  "revision": "r8-minimal-sliders",
+  "target": "xiaomi-band-10-3.1.28",
+  "firmware_sha256": "fb726472416e99ba11d1c20ce8f0d4f0831a6e9a673d63bb5918e2c3921d8845",
+  "device_status": "NOT_PROBED",
+  "image_size": 3500,
+  "image_crc": 3315623511,
+  "watchface_id": "000000399920",
+  "files": {
+    "payload.bin": {
+      "size": 3500,
+      "sha256": "fbb44dbabf90b5d15c9ae3738defa866f9fcb37312808218debf29d4f1020882"
+    },
+    "profile.lua": {
+      "size": 6534,
+      "sha256": "a9747814f6dcc9581be5c34959e2b073412332e5b6c80e525f5299cf54a9a5a2"
+    },
+    "abi-evidence.json": {
+      "size": 5983,
+      "sha256": "849677f4c9d6cf7c60382fcdc255e38f6037ea22426939e70140e8cd62ba23ec"
+    },
+    "main.lua": {
+      "size": 59481,
+      "sha256": "f43a9f7160b0cc98b1984306eecd914a4822a27f9a3923f1c376dd207e057233"
+    },
+    "o66cn-3.1.28-native-ble-r8.bin": {
+      "size": 1594903,
+      "sha256": "7ca439922faeaac3d27f1d6112bc32c405b07de8ae3c858a33e916506d75da03"
+    }
+  }
+}

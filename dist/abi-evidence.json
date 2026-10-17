@@ -1,0 +1,170 @@
+{
+  "firmware_sha256": "fb726472416e99ba11d1c20ce8f0d4f0831a6e9a673d63bb5918e2c3921d8845",
+  "spans": [
+    {
+      "address": "0x0c0a181c",
+      "bytes": "7047024bf2e700bf00c0ff0700a0ff07",
+      "sha256": "78a5da1afaa4ac07fc0c5ffe166a8be604b7945bbc42aec4a52d33a0fa3b6fcd"
+    },
+    {
+      "address": "0x0c11372c",
+      "bytes": "f0b5002483b000af04700546391d2046",
+      "sha256": "7ac45fbfcdb50e91b8b1c9d414c7e185dc8de2a0f29fbf55b04de58a2c9b0571"
+    },
+    {
+      "address": "0x0c11ed98",
+      "bytes": "80b584b0002100af90b10b4b0b4ab0fb",
+      "sha256": "dd4bfcba9ca378da3ea62ac5cd96d6938eccb57a26ea3793924fc6babd3c8456"
+    },
+    {
+      "address": "0x0c11eee8",
+      "bytes": "80b5034b014600af1868fff7e5ff80bd",
+      "sha256": "f3efd9e221b23c3047caeec056c514d01158e77c3b78df49b815ee57dea7ba2d"
+    },
+    {
+      "address": "0x0c121d0c",
+      "bytes": "90b583b000af7960fff746ff044618b1",
+      "sha256": "73bb642e8bc214bd5fc786a1d8ac05207026d315c7a4bc09088d97325d0b4428"
+    },
+    {
+      "address": "0x0c121d1c",
+      "bytes": "00217a68bff326f920460c37bd4690bd",
+      "sha256": "de3ca701f1e1f0edd48ac8ce7e329c840b99e1c7b7d959ebc469fbd5ec1c8401"
+    },
+    {
+      "address": "0x0c121d74",
+      "bytes": "98b5074b014600af1868fff7c5ff0446",
+      "sha256": "4e63a7fc6d1260f10ce3271c561700df3a3859ee3843b2854c2f0d696356878f"
+    },
+    {
+      "address": "0x0c4c6528",
+      "bytes": "2de9f041adf51a7d88461646054600af",
+      "sha256": "1120aded5053a25040838f7e05ef91c0b34d2ff33c1392824ef5a4264bb80abd"
+    },
+    {
+      "address": "0x0c4c6624",
+      "bytes": "80b5adf51a7d00af70b1836870220068",
+      "sha256": "c06acca89e672ab35432637c455881fde95cadf1f7dc22292764843c34fab273"
+    },
+    {
+      "address": "0x0c4c6650",
+      "bytes": "90b5adf51b7d044600afb8b182683a63",
+      "sha256": "c4c4127a61fa7cb7f7d53ce07226bac500f54acdcd4b2ef243a49d283e9e84bc"
+    },
+    {
+      "address": "0x0c4c6690",
+      "bytes": "90b5adf51b7d144600afa8b18368b986",
+      "sha256": "3e5122c8452ef297699403b0aaa0c0322e3e5a0419f8499e84ec0cbf4a488108"
+    },
+    {
+      "address": "0x0c4c66cc",
+      "bytes": "80b5adf51a7d00af78b18368b9867422",
+      "sha256": "8dfb1e8a4a7f01d088a920c92e9bdfb8c38b56bd497a43f2ddcba786d6f4ec9b"
+    },
+    {
+      "address": "0x0c4c66f8",
+      "bytes": "f9e780b5adf51a7d00af80b18368b986",
+      "sha256": "43238985d4157261b9bc8eaecb328261ba03c0c7fb64170201abc81732ae555c"
+    },
+    {
+      "address": "0x0c4c68c8",
+      "bytes": "90bdb0b500af30b140f20225ab4202d8",
+      "sha256": "b8edd75bc34bd81da9dd010a3c038504363e7f6ab4a480c76e8eee35b93a94ec"
+    },
+    {
+      "address": "0x0c4c6ec0",
+      "bytes": "80bd80b5adf51a7d00af0b68d622391d",
+      "sha256": "91434c5e198680a1e62d4831bbc5c5430d66ac34c51656d1ddf302c6511238c8"
+    },
+    {
+      "address": "0x0c4c8320",
+      "bytes": "866b90f846000c3059f44efd054604f1",
+      "sha256": "1563011fd451fbe3e4d6bdb36c316b40a6bd5e1a13328e39aa04d414c22fc586"
+    },
+    {
+      "address": "0x0c4c8358",
+      "bytes": "86e5d0f8485190f84c116b6828469b68",
+      "sha256": "d5f170a5be565aaedc80c363c87d59f104cd2454a2d894418afdd17f38055e10"
+    },
+    {
+      "address": "0x0c4c837c",
+      "bytes": "d0f850516b682846db689847284656f4",
+      "sha256": "2438b7df78a89862e80e501281506b1f40f323540526f02c4e23d429734e0fde"
+    },
+    {
+      "address": "0x0c4c83cc",
+      "bytes": "f0e7002b3ff44aad5b68002b3ff446ad",
+      "sha256": "b1ee6e0d444189402751aa47410a1355a7a9d67197fb027617894918e4ab873c"
+    },
+    {
+      "address": "0x0c4c83fc",
+      "bytes": "34e5002b3ff432addd68002d3ff42ead",
+      "sha256": "1a4c87c4780bc2f6a880f924e1c6668d61c21c7209a7bce8562830b7be88a541"
+    },
+    {
+      "address": "0x0c4c843c",
+      "bytes": "002b3ff413ad1d69002d3ff40fadb4f8",
+      "sha256": "374e8bea6dfdb591c590713fe7b6e7c12be8c70e3bc1165adce247e2a6d6bb49"
+    },
+    {
+      "address": "0x0c4c8498",
+      "bytes": "002b3ff4e5acdd69002d3ff4e1ac3046",
+      "sha256": "73409f8f5d0cb8ac8b967b1c0f0732265185b786cc7e26e9e56b74ff79fa0de0"
+    },
+    {
+      "address": "0x0c4cc828",
+      "bytes": "2de9f0430546adf51b7d00af88461646",
+      "sha256": "67899b5a5a751cf137fa7c30fb5f8bacaae954b6611d7f0c4001f3f512169304"
+    },
+    {
+      "address": "0x0c4cc9b0",
+      "bytes": "2de9f0479eb0b02002af55f4dbf90446",
+      "sha256": "0a89776524a3be72482e88eaefe2e8ef23be484b220ae8e35c09d1ff0fc3a802"
+    },
+    {
+      "address": "0x0c4d573c",
+      "bytes": "55d13b7e042b08d8dfe803f00354575a",
+      "sha256": "d4260ac5f2759e928cd64c48de774b8e6e2a9c480a2766c36f75bd36533851b6"
+    },
+    {
+      "address": "0x0c4d574c",
+      "bytes": "5d003988314843f4b5fb4046f96943f4",
+      "sha256": "a83d5393d354405845fc99af6764c1134d8858db215cb3e983ed534dcefcfe06"
+    },
+    {
+      "address": "0x0c4d57f0",
+      "bytes": "39881048ade739880f48aae739880f48",
+      "sha256": "f22a9612410820b1f4eb4239a18cb0b329087bceb6c95ef75c7c1eb7a42241b0"
+    },
+    {
+      "address": "0x0c4d5800",
+      "bytes": "a7e739880e48a4e78dd6742cb8d6742c",
+      "sha256": "7a70c754547504b2965d93f43f13bb56a6bf675bf63c68047d0df21fc6515ae7"
+    },
+    {
+      "address": "0x0c4d5834",
+      "bytes": "3ad7742c49d7742c5ad7742c6bd7742c",
+      "sha256": "9eae60bf98f6fc93d1f08c14c82420351f8b86973c5a111b19fa0f22a2aab87b"
+    },
+    {
+      "address": "0x0c50548c",
+      "bytes": "90b5adf51b7d044600afb0b183680622",
+      "sha256": "af468fbf2be197727a98c354553716f4dfaaadfc06de674bb9424e2802c4c7b0"
+    },
+    {
+      "address": "0x0c50fce8",
+      "bytes": "2de9f04f89b081468a461e46144606af",
+      "sha256": "3e1f26e7fd63ee9b53d0ac458fb5d46cdd05554809d6d8996f70c83f45b02e3d"
+    },
+    {
+      "address": "0x0c5590bc",
+      "bytes": "9430bff34f8fbff36f8f704700ed00e0",
+      "sha256": "f472ecfeb17e4f4869d1778b3d2a705f6e7ee4a2fdd0fd19d05c66cf1b92306c"
+    },
+    {
+      "address": "0x0c56a2a8",
+      "bytes": "02d1034b01225a6300207047014bf9e7",
+      "sha256": "feabbf92b742538298d03229ece9d11c818eff172f9e592e3eda6cefea2ab304"
+    }
+  ]
+}
