@@ -193,3 +193,7 @@ python3 preview.py /tmp/o66-ui.json
 界面不使用固件的滑条构造器，而是用常驻对象绘制轨道、填充与滑块，并监听
 PRESSED / PRESSING / RELEASED / PRESS_LOST。坐标读取所用的绑定见
 [docs/lua-input-abi.md](docs/lua-input-abi.md)。
+
+# 友情链接
+- [LINUX DO](https://linux.do/) - 真诚、友善、团结、专业，共建自由开放的技术社区。
+
